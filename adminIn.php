@@ -12,7 +12,7 @@
         $mail->CharSet = 'UTF-8';
         //$mail->SMTPDebug = 2; 
         $mail->Username = 'keshavabhishek2003@gmail.com';
-        $mail->Password = 'littbyjhpnjnmydn';
+        $mail->Password = '';
         $mail->SetFrom('keshavabhishek2003@gmail.com');
         $mail->Subject = $subject;
         $mail->Body =$msg;
