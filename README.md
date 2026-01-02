@@ -63,7 +63,7 @@ A full-stack **Airline Management System** built using **PHP, MySQL, HTML, CSS, 
 
 ## 🗄️ Database Setup
 
-### Database Name
+### Airline
 ```sql
 CREATE TABLE customer (
   seat VARCHAR(10) PRIMARY KEY,
