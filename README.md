@@ -42,3 +42,34 @@ A full-stack **Airline Management System** built using **PHP, MySQL, HTML, CSS, 
 
 ## 📁 Project Structure
 
+- **Frontend**
+  - `index.html` – Main ticket booking interface
+  - `style.css` – Global styling
+  - `print.css` – Print-friendly ticket styles
+  - `node.js` – Seat and airport selection logic
+
+- **Backend (PHP)**
+  - `index.php` – Handles ticket booking
+  - `show.php` – Displays booked ticket details
+  - `update.php` – Loads ticket data for update
+  - `saveUpdate.php` – Saves updated ticket data
+  - `delete.php` – Deletes a ticket
+  - `getData.php` – Fetches customer data from database
+
+- **Admin**
+  - `adminCheck.php` – Admin password validation
+  - `adminIn.php` – Admin dashboard & email reporting
+---
+
+## 🗄️ Database Setup
+
+### Database Name
+```sql
+CREATE TABLE customer (
+  seat VARCHAR(10) PRIMARY KEY,
+  name VARCHAR(100),
+  age INT,
+  email VARCHAR(100),
+  srcfrom VARCHAR(100),
+  srcto VARCHAR(100)
+);
