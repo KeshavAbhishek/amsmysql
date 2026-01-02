@@ -1,0 +1,9 @@
+@media print{
+    #info{
+        display: none !important;
+    }
+
+    #buttonFrame{
+        display: none !important;
+    }
+}

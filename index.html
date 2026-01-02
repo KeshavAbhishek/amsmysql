@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airline Management System</title>
+    <script src="https://kit.fontawesome.com/477be79e6e.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+        integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="container">
+        <div id="navbar">
+            <div id="heading">Airline&nbsp;&nbsp;&nbsp;Management&nbsp;&nbsp;&nbsp;System</div>
+            <ul id="ul">
+                <li onclick="document.location.replace('./index.html');">Book Ticket</li>
+                <li onclick="updateMode();">Update Ticket</li>
+                <li onclick="deleteMode();">Delete Ticket</li>
+                <!-- <li onclick="document.location.replace('./show.php');">View Ticket</li> -->
+            </ul>
+            <i class="fa-solid fa-bars" style="display: none;" id="iTag"></i>
+        </div>
+        <div id="verticalNav">
+            <div onclick="document.location.replace('./index.html');">Book Ticket</div>
+            <div onclick="updateMode();">Update Ticket</div>
+            <div onclick="deleteMode();">Delete Ticket</div>
+            <!-- <div onclick="document.location.replace('./show.php');">View Ticket</div> -->
+        </div>
+        <br><br>
+        <div id="child">
+            <div id="head">Customer Details</div>
+            <form action="./index.php" method="post" id="form">
+                <br><br>
+                <table id="table">
+                    <tr class="hide">
+                        <!-- <td class="tableChild"><label for="name">Name :&nbsp;</label></td> -->
+                        <td><input type="text" id="name" name="name" class="sameWidth" placeholder="Enter your name">
+                        </td>
+                    </tr>
+                    <tr class="hide">
+                        <!-- <td class="tableChild"><label for="age">Age :&nbsp;</label></td> -->
+                        <td><input type="number" id="age" min="1" max="100" name="age" class="sameWidth"
+                                placeholder="Enter your age"></td>
+                    </tr>
+                    <tr class="hide">
+                        <!-- <td class="tableChild"><label for="email">Email :&nbsp;</label></td> -->
+                        <td><input type="email" id="email" name="email" class="sameWidth" placeholder="Enter your email" required>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <!-- <td class="tableChild"><label for="seat">Seat :&nbsp;</label></td> -->
+                        <!-- <td><select type="text" id="seat" name="seat" class="sameWidth"
+                                style="cursor: pointer;" required></select></td> -->
+                        <td><input type="text" id="seat" name="seat" class="sameWidth" placeholder="Choose Seat"
+                                readonly="true" style="cursor: pointer !important;"></td>
+                    </tr>
+                    <tr class="hide">
+                        <!-- <td class="tableChild"><label for="bairport">Boarding Airport :&nbsp;</label></td> -->
+                        <!-- <td><select name="bairport" id="bairport" value="" class="sameWidth" style="cursor: pointer;"
+                                required></select></td> -->
+                        <td><input type="text" id="bairport" name="bairport" class="sameWidth" placeholder="Choose BA"
+                                readonly="true" style="cursor: pointer !important;"></td>
+                    </tr>
+                    <tr class="hide">
+                        <!-- <td class="tableChild"><label for="dairport">Destination Airport :&nbsp;</label></td> -->
+                        <!-- <td><select name="dairport" id="dairport" value="" class="sameWidth" style="cursor: pointer;"
+                                required></select></td> -->
+                        <td><input type="text" id="dairport" name="dairport" class="sameWidth" placeholder="Choose DA"
+                                readonly="true" style="cursor: pointer !important;"></td>
+                    </tr>
+                </table>
+                <div id="buttonFrame">
+                    <button id="submit" class="btn">Book Ticket</button>
+                    <button id="cancel" class="btn">Clear</button>
+                </div>
+            </form>
+        </div>
+        <div id="srcfrom">
+            <div id="srcfomHeading" class="ahead">
+                Choose Boarding Airport
+                <br>
+                <input type="text" id="srcfromtext" class="filter" placeholder="Search...">
+            </div>
+            <div id="fromairportButtonFrame"></div>
+        </div>
+
+        <div id="srcto">
+            <div id="srctoHeading" class="ahead">
+                Choose Destination Airport
+                <br>
+                <input type="text" id="srctotext" class="filter" placeholder="Search...">
+            </div>
+            <div id="toairportButtonFrame"></div>
+        </div>
+        <div id="seatSelect" class="">
+            <div id="seatHeading">Choose&nbsp;Ticket</div>
+            <div id="seatButtonFrame"></div>
+        </div>
+    </div>
+    <script src="node.js"></script>
+    <script defer>
+        // Some JS
+
+        var open = 0;
+
+        // Delete Function
+
+        function deleteMode() {
+            var hideThese = document.querySelectorAll(".hide");
+            for (const x of hideThese) {
+                x.style.display = "none";
+            }
+            document.getElementById("form").setAttribute("action", "./delete.php");
+            document.getElementById("submit").innerText = "Delete Ticket";
+
+            document.getElementById("verticalNav").style.height = "0rem";
+            open = 0;
+
+            document.getElementById("head").innerHTML = "Delete<br>Customer Details";
+
+        }
+
+        // Update Function
+
+        function updateMode() {
+            var hideThese = document.querySelectorAll(".hide");
+            for (const x of hideThese) {
+                x.style.display = "none";
+            }
+            document.getElementById("form").setAttribute("action", "./update.php");
+            document.getElementById("submit").innerText = "Proceed";
+
+            document.getElementById("verticalNav").style.height = "0rem";
+            open = 0;
+
+            document.getElementById("head").innerHTML = "Update<br>Customer Details";
+        }
+
+        document.getElementById("iTag").addEventListener("click", () => {
+            if (open == 0) {
+                document.getElementById("verticalNav").style.height = "5rem";
+                open = 1;
+            }
+            else {
+                document.getElementById("verticalNav").style.height = "0rem";
+                open = 0;
+            }
+        });
+
+        // setTimeout(() => {
+        //     window.print();
+        // }, 4000);
+    </script>
+</body>
+
+</html>
